@@ -1,4 +1,4 @@
-From 209758b7e6b7783919e3f4a92864a37082956036 Mon Sep 17 00:00:00 2001
+From 3f072fbb15965dec24d79d53fc745826ec9959e7 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 08:56:43 -0500
 Subject: [PATCH] POM Changes
@@ -450,7 +450,7 @@ index b5aeb99e..67386de0 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 98df957c..54ce1c08 100644
+index eff0bf2e..d9999a57 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -5,19 +5,19 @@
@@ -478,7 +478,7 @@ index 98df957c..54ce1c08 100644
      <inceptionYear>2015</inceptionYear>
      <organization>
          <name>WaterfallMC</name>
-@@ -65,17 +65,17 @@
+@@ -65,27 +65,29 @@
      </modules>
  
      <scm>
@@ -501,6 +501,22 @@ index 98df957c..54ce1c08 100644
      </ciManagement>
  
      <distributionManagement>
+         <repository>
+-            <id>papermc-releases</id>
+-            <url>https://papermc.io/repo/repository/maven-releases/</url>
++            <id>vector-repo</id>
++            <name>Vector Private Repository</name>
++            <url>https://repo.vectormc.net/artifactory/private</url>
+         </repository>
+         <snapshotRepository>
+-            <id>papermc-snapshots</id>
+-            <url>https://papermc.io/repo/repository/maven-snapshots/</url>
++            <id>vector-repo</id>
++            <name>Vector Private Repository</name>
++            <url>https://repo.vectormc.net/artifactory/private</url>
+         </snapshotRepository>
+     </distributionManagement>
+ 
 diff --git a/protocol/pom.xml b/protocol/pom.xml
 index 2493fc17..2bd55072 100644
 --- a/protocol/pom.xml
@@ -666,5 +682,5 @@ index 1fd54029..86f7aabc 100644
              <scope>compile</scope>
          </dependency>
 -- 
-2.21.0
+2.22.0.windows.1
 
