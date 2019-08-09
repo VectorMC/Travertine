@@ -1,0 +1,52 @@
+From 61001e6efa94669c4bbe880041db700b49ad0223 Mon Sep 17 00:00:00 2001
+From: Jason Ho <jason@jasonho.tk>
+Date: Fri, 9 Aug 2019 15:04:24 -0700
+Subject: [PATCH] Allow skipping a bungee command on a specific server
+
+
+diff --git a/api/src/main/java/net/md_5/bungee/api/event/ChatEvent.java b/api/src/main/java/net/md_5/bungee/api/event/ChatEvent.java
+index 828ede56..8c74a371 100644
+--- a/api/src/main/java/net/md_5/bungee/api/event/ChatEvent.java
++++ b/api/src/main/java/net/md_5/bungee/api/event/ChatEvent.java
+@@ -1,8 +1,6 @@
+ package net.md_5.bungee.api.event;
+ 
+-import lombok.Data;
+-import lombok.EqualsAndHashCode;
+-import lombok.ToString;
++import lombok.*;
+ import net.md_5.bungee.api.CommandSender;
+ import net.md_5.bungee.api.ProxyServer;
+ import net.md_5.bungee.api.connection.Connection;
+@@ -26,6 +24,12 @@ public class ChatEvent extends TargetedEvent implements Cancellable
+      * Text contained in this chat.
+      */
+     private String message;
++    /**
++     * Allow us to skip bungee execution and go straight to servers
++     */
++    @Getter
++    @Setter
++    private boolean skipBungeeExecution = false;
+ 
+     public ChatEvent(Connection sender, Connection receiver, String message)
+     {
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+index 35b9530a..6083376c 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+@@ -151,8 +151,9 @@ public class UpstreamBridge extends PacketHandler
+         if ( !bungee.getPluginManager().callEvent( chatEvent ).isCancelled() )
+         {
+             chat.setMessage( chatEvent.getMessage() );
+-            if ( !chatEvent.isCommand() || !bungee.getPluginManager().dispatchCommand( con, chat.getMessage().substring( 1 ) ) )
+-            {
++            if( chatEvent.isSkipBungeeExecution() ) {
++                con.getServer().unsafe().sendPacket( chat );
++            } else if( !chatEvent.isCommand() || !bungee.getPluginManager().dispatchCommand( con, chat.getMessage().substring( 1 ) ) ) {
+                 con.getServer().unsafe().sendPacket( chat );
+             }
+         }
+-- 
+2.22.0.windows.1
+
