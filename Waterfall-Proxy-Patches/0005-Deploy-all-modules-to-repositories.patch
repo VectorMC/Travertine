@@ -1,0 +1,61 @@
+From 3d26accfc22333494d0e7eee8361b159318ccced Mon Sep 17 00:00:00 2001
+From: Jason Ho <jason@jasonho.tk>
+Date: Tue, 8 Oct 2019 19:39:49 -0700
+Subject: [PATCH] Deploy all modules to repositories
+
+
+diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
+index d2f0293d..66f1a5e9 100644
+--- a/bootstrap/pom.xml
++++ b/bootstrap/pom.xml
+@@ -19,7 +19,6 @@
+     <description>Java 1.6 loader for Travertine</description>
+ 
+     <properties>
+-        <maven.deploy.skip>true</maven.deploy.skip>
+         <maven.compiler.source>1.6</maven.compiler.source>
+         <maven.compiler.target>1.6</maven.compiler.target>
+         <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+diff --git a/module/pom.xml b/module/pom.xml
+index 520df1f0..e79cfe9b 100644
+--- a/module/pom.xml
++++ b/module/pom.xml
+@@ -29,7 +29,6 @@
+ 
+     <properties>
+         <module.author>WaterfallMC</module.author>
+-        <maven.deploy.skip>true</maven.deploy.skip>
+     </properties>
+ 
+     <dependencies>
+diff --git a/proxy/pom.xml b/proxy/pom.xml
+index 2d4e4d79..04487209 100644
+--- a/proxy/pom.xml
++++ b/proxy/pom.xml
+@@ -18,10 +18,6 @@
+     <name>Travertine-Proxy</name>
+     <description>Proxy component of the Elastic Portal Suite</description>
+ 
+-    <properties>
+-        <maven.deploy.skip>true</maven.deploy.skip>
+-    </properties>
+-
+     <dependencies>
+         <dependency>
+             <groupId>com.flowpowered</groupId>
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+index 6083376c..b80a59dd 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+@@ -152,7 +152,7 @@ public class UpstreamBridge extends PacketHandler
+         {
+             chat.setMessage( chatEvent.getMessage() );
+             if( chatEvent.isSkipBungeeExecution() ) {
+-                con.getServer().unsafe().sendPacket( chat );
++                con.getServer().unsafe().sendPacket(chat);
+             } else if( !chatEvent.isCommand() || !bungee.getPluginManager().dispatchCommand( con, chat.getMessage().substring( 1 ) ) ) {
+                 con.getServer().unsafe().sendPacket( chat );
+             }
+-- 
+2.22.0.windows.1
+
