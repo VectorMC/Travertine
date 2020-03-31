@@ -1,3 +1,10 @@
 Travertine-Proxy
 .idea
 *.iml
+
+# intellij
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
