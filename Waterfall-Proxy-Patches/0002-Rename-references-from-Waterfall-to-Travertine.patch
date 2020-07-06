@@ -1,4 +1,4 @@
-From d78ca1de61b714396d1ee35da55814990713d41e Mon Sep 17 00:00:00 2001
+From 7cd2a71c729f26d78a4032478219c89c6bd5ef89 Mon Sep 17 00:00:00 2001
 From: Techcable <Techcable@techcable.net>
 Date: Mon, 6 Jun 2016 13:47:46 -0600
 Subject: [PATCH] Rename references from Waterfall to Travertine
@@ -31,10 +31,10 @@ index d703d6d2..d8dcdc1e 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index a839cba5..f4bc9589 100644
+index 2938f2f1..f7f1e7cc 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -187,7 +187,7 @@ public class BungeeCord extends ProxyServer
+@@ -188,7 +188,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -43,7 +43,7 @@ index a839cba5..f4bc9589 100644
  
          try
          {
-@@ -533,7 +533,7 @@ public class BungeeCord extends ProxyServer
+@@ -538,7 +538,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -114,5 +114,5 @@ index 65121ba2..d4fad294 100644
              SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
 -- 
-2.22.0.windows.1
+2.25.1
 

@@ -1,4 +1,4 @@
-From 821f4383afa22dbe7af37097823358df253727bc Mon Sep 17 00:00:00 2001
+From 26d23a58f616f21d35041c52a54f3b42398da0e0 Mon Sep 17 00:00:00 2001
 From: Jason Ho <jason@jasonho.tk>
 Date: Fri, 9 Aug 2019 15:04:24 -0700
 Subject: [PATCH] Allow skipping a bungee command on a specific server
@@ -32,10 +32,10 @@ index 828ede56..8c74a371 100644
      public ChatEvent(Connection sender, Connection receiver, String message)
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 359c90e0..3d46cd2d 100644
+index 0994bebd..eee0b172 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -154,8 +154,9 @@ public class UpstreamBridge extends PacketHandler
+@@ -155,8 +155,9 @@ public class UpstreamBridge extends PacketHandler
          if ( !bungee.getPluginManager().callEvent( chatEvent ).isCancelled() )
          {
              chat.setMessage( chatEvent.getMessage() );
@@ -48,5 +48,5 @@ index 359c90e0..3d46cd2d 100644
              }
          }
 -- 
-2.22.0.windows.1
+2.25.1
 
